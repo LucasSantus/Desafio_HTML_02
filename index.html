@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+    <!-- BEGIN: HEAD -->
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Desafio" />
+        <meta name="author" content="Lucas Eduardo de Oliveira Santos" />
+        
+        <!-- BEGIN: CSS -->
+
+            <!-- Bootstrap CSS -->
+            <link href="assets/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+            <!-- Index CSS -->
+            <link href="assets/css/index.css" rel="stylesheet">
+
+        <!-- END: CSS -->
+
+        <title>Desafio HTML 02</title>
+    </head>
+    <!-- END: HEAD -->
+
+    <body>
+        <main class="d-flex align-items-center">
+            <div class="d-flex justify-content-center ">
+                <div class="col-8">
+                    <form id="id_form_register_user" class="row g-3 border p-4">
+                        <div class="col-12">
+                            <label for="id_name" class="form-label">Nome Completo:</label>
+                            <input type="text" class="form-control" id="id_name" placeholder="Michel Oliveira Prado" required>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="id_user" class="form-label">Usuário:</label>
+                            <input type="text" class="form-control" id="id_user" placeholder="VanPrado" required>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="id_email" class="form-label">E-mail:</label>
+                            <input type="email" class="form-control" id="id_email" placeholder="vanprado1999@gmail.com" required>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="id_password" class="form-label">Senha:</label>
+                            <input type="password" class="form-control" id="id_password" placeholder="* * * * * *" minlength="4" maxlength="16" required>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="id_confirm_password" class="form-label">Confirmação de Senha:</label>
+                            <input type="password" class="form-control" id="id_confirm_password" minlength="4" maxlength="16" placeholder="* * * * * *" required>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="id_age" class="form-label">Idade:</label>
+                            <input type="number" class="form-control" id="id_age" placeholder="23" required>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="id_phone" class="form-label">Telefone:</label>
+                            <input type="text" class="form-control" id="id_phone" placeholder="(35) 9 9536-5729" required>
+                        </div>
+                        <div class="col-12 colmd-6">
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <!-- BEGIN: JS -->
+
+            <!-- JQuery JS -->
+            <script src="assets/js/jquery/jquery.min.js"></script>
+
+            <!-- JQuery Mask JS -->
+            <script src="assets/js/jquery/mask/jquery.mask.min.js"></script>
+
+            <!-- Bootstrap Bundle -->
+            <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+            <script>
+                $(document).ready(function(){
+                    $('#id_phone').mask('(00) 0 0000-0000');
+
+                    $("#id_confirm_password").on('change', function () {
+                        let password = $("#id_password").val();
+                        let confirm_password = $("#id_confirm_password").val();
+                        let password_size = password.length;
+                    
+                        if (password != "" && confirm_password != "" && password === confirm_password){
+                            if(password_size < 4){
+                                alert('Quantidade mínima de caracteres: 4');
+                                $('#id_password').val('');
+                                $('#id_confirm_password').val('');
+                                $('#id_password').focus();
+                            }
+                            else if(password_size > 16){
+                                alert('Quantidade máxima de caracteres: 16');
+                                $('#id_password').val('');
+                                $('#id_confirm_password').val('');
+                                $('#id_password').focus();
+                            }
+                        }
+                        else{
+                            alert('Os campos senha e confirmação de senha não se identificam!');
+                            $('#id_password').val('');
+                            $('#id_confirm_password').val('');
+                            $('#id_password').focus();
+                        }
+                    });
+
+                    $("#id_form_register_user").submit(function(event) {
+                        let name = $("#id_name").val()
+                        let user = $("#id_user").val()
+                        let email = $("#id_email").val()
+                        let password = $("#id_password").val()
+                        let confirm_password = $("#id_confirm_password").val()
+                        let age = $("#id_age").val()
+                        let phone = $("#id_phone").val()
+
+                        alert(`Nome Completo: ${name}\nUsuário: ${user}\nE-mail: ${email}\nSenha: ${password}\nConfirmação de Senha: ${confirm_password}\nIdade: ${age}\nTelefone: ${phone}\n`);
+                    });
+                });
+            </script>
+
+        <!-- END: JS -->
+    </body>
+</html>
