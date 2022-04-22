@@ -79,6 +79,12 @@
                 $(document).ready(function(){
                     $('#id_phone').mask('(00) 0 0000-0000');
 
+                    function clear_form(){
+                        $('#id_password').val('');
+                        $('#id_confirm_password').val('');
+                        $('#id_password').focus();
+                    }
+
                     $("#id_confirm_password").on('change', function () {
                         let password = $("#id_password").val();
                         let confirm_password = $("#id_confirm_password").val();
@@ -87,22 +93,16 @@
                         if (password != "" && confirm_password != "" && password === confirm_password){
                             if(password_size < 4){
                                 alert('Quantidade mínima de caracteres: 4');
-                                $('#id_password').val('');
-                                $('#id_confirm_password').val('');
-                                $('#id_password').focus();
+                                clear_form();
                             }
                             else if(password_size > 16){
                                 alert('Quantidade máxima de caracteres: 16');
-                                $('#id_password').val('');
-                                $('#id_confirm_password').val('');
-                                $('#id_password').focus();
+                                clear_form();
                             }
                         }
                         else{
                             alert('Os campos senha e confirmação de senha não se identificam!');
-                            $('#id_password').val('');
-                            $('#id_confirm_password').val('');
-                            $('#id_password').focus();
+                            clear_form();
                         }
                     });
 
